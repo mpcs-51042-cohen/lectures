@@ -2,7 +2,9 @@
 
 ### Agenda
 
-0. Test fixtures, running project-specific utilities with `uv run`
+0. Test fixtures; running project-specific utilities with `uv run`
+
+1. "dunder" ("double underscore") methods
 
 2. Lab #5: Practice with classes and objects
 
