@@ -4,7 +4,7 @@ import base64
 # Here are some helpful functions.
 
 def getApiKey(): 
-  return base64.b64.decode('YmRlMDI0ZjNlYjQzZjU5N2FhZmUwMWVkOWM5MDk4YzY=').decode()
+  return base64.b64decode('YmRlMDI0ZjNlYjQzZjU5N2FhZmUwMWVkOWM5MDk4YzY=').decode()
 
 # Resource can be "top_rated" or "now_playing"
 def url_for_movies(resource):
@@ -29,7 +29,7 @@ def url_for_search(keyword):
 
 # Example Usage
 
-url = url_for_movies('top_rated')
+url = url_for_movies('top_rated') # now_playing
 print("Calling", url)
 
 response = requests.get(url)
@@ -37,6 +37,10 @@ response = requests.get(url)
 if response.status_code == 200:
   results = response.json()
   print("Got results!")
+  titles = [movie['title'] for movie in results['results']]
+  for title in titles:
+    print(title)
+  
   # TO DO:
   # Display movie titles and rating + whatever else seems interesting
   

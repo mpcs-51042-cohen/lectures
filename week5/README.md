@@ -24,7 +24,7 @@
   - Work incrementally
   - Think in terms of modular encapsulation
   - "Systems thinking"
-  - Quality control
+  - Quality control & simulation testing
 
 6. Rubber duck debugging
 
