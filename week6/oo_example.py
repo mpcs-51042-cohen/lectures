@@ -4,15 +4,16 @@ from datetime import datetime
 import movies
 
 class APIClient:
-    def __init__(self, base_url):
-        self.base_url = base_url
+    def __init__(self):
+        self.base_url = None
         self.request_count = 0
     
     def get_headers(self):
         headers = {'Content-Type': 'application/json'}
         return headers
     
-    def make_request(self, method='GET', data=None):
+    def make_request(self, url, method='GET', data=None):
+        self.base_url = url
         headers = self.get_headers()
         
         self.request_count += 1
@@ -27,21 +28,24 @@ class APIClient:
 
 
 class CachedClient(APIClient):
-    def __init__(self, base_url, cache_duration=300):
-        super().__init__(base_url)
+    def __init__(self, cache_duration=300):
+        super().__init__()
         self.cache = {}
         self.cache_duration = cache_duration  # seconds
     
-    def make_request(self, method='GET', data=None):
+    def make_request(self, url, method='GET', data=None):
         pass
 
 
 
-# Main section
+client = APIClient()
 
 url = movies.url_for_movies('top_rated')
-client = APIClient(url)
-data = client.make_request()
+data = client.make_request(url)
 print("\n")
 [print(f"{movie['vote_average']}\t{movie['title']}") for movie in data['results']]
 
+url = movies.url_for_movies('now_playing')
+data = client.make_request(url)
+print("\n")
+[print(f"{movie['vote_average']}\t{movie['title']}") for movie in data['results']]
