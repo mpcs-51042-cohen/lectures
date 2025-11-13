@@ -7,16 +7,16 @@
 
 2. Questions about OOP_2, esp. class methods/class attributes/instance methods/instance attributes?
 
-2. LAB on OOP_2
+3. LAB on OOP_2
 
 --- BREAK ---
 
-3. Final words on OO
+4. Final words on OO
   - Object properties
   - Inheritance vs Composition
   - Abstract base classes
 
-4. The Python "Data Model"
+5. The Python "Data Model"
   - Memory management
   - Protocols
     - Object
