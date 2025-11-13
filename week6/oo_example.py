@@ -34,13 +34,32 @@ class CachedClient(APIClient):
         self.cache_duration = cache_duration  # seconds
     
     def make_request(self, url, method='GET', data=None):
-        pass
+        if method != 'GET':
+            return super().make_request(method, data)
+        cache_key = f"{method}:{url}"
+        
+        if cache_key in self.cache:
+            print(f"CACHE HIT: {url}")
+            return self.cache[cache_key]
+        
+        response = super().make_request(url, method, data)
+        self.cache[cache_key] = response
+        return self.cache[cache_key]
+    
 
+def get_data_from_the_web(c)
+    c.make_request("http://....")
+    
+    
+client = CachedClient()
 
-
-client = APIClient()
+get_data_from_the_web(CachedClient())
+get_data_from_the_web(APIClient())
 
 url = movies.url_for_movies('top_rated')
+data = client.make_request(url)
+data = client.make_request(url)
+data = client.make_request(url)
 data = client.make_request(url)
 print("\n")
 [print(f"{movie['vote_average']}\t{movie['title']}") for movie in data['results']]
