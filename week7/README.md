@@ -1,6 +1,5 @@
 # Week 7
 
-Be sure to `uv sync` after getting this code.
 
 ### Agenda
 
